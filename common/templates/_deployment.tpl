@@ -1,4 +1,9 @@
 {{ define "common.deployment"}}
+{{- $common := dict "Values" .Values.common -}}
+{{- $noCommon := omit .Values "common" -}}
+{{- $overrides := dict "Values" $noCommon -}}
+{{- $noValues := omit . "Values" -}}
+{{- with merge $noValues $overrides $common -}}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -68,4 +73,5 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+  {{- end }}
 {{- end }}

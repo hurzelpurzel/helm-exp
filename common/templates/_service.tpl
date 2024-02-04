@@ -1,4 +1,9 @@
 {{ define "common.service" }}
+{{- $common := dict "Values" .Values.common -}}
+{{- $noCommon := omit .Values "common" -}}
+{{- $overrides := dict "Values" $noCommon -}}
+{{- $noValues := omit . "Values" -}}
+{{- with merge $noValues $overrides $common -}}
 ---
 apiVersion: v1
 kind: Service
@@ -15,4 +20,5 @@ spec:
       name: http
   selector:
     {{- include "common.selectorLabels" . | nindent 4 }}
+{{- end }}
 {{- end }}
