@@ -1,0 +1,6 @@
+dependencies:
+- name: simple
+  repository: file://../simple
+  version: 0.1.0
+digest: sha256:6b27e555fbe71ebe7a0c08fa87cc05a518ed0c8390f44458e55a1046646953bc
+generated: "2024-02-04T11:37:34.442541602+01:00"

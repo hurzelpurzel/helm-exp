@@ -60,3 +60,15 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+
+{{/*
+Make repository overridable
+*/}}
+{{- define "common.repository" -}}
+{{- if and .Values.global .Values.global.image.repository }}
+{{- .Values.global.image.repository }}
+{{- else }}
+{{- .Values.image.repository }}
+{{- end }}
+{{- end }}
